@@ -6,15 +6,13 @@ function LOL:clone(...)
     return T
 end
 function LOL:init(...) end
-function LOL:is(T)
-    return getmetatable(self) == T
-end
-function LOL:issub(T)
-    local mt = getmetatable(self)
-    while mt do
-        if mt == T then return true end
-        mt = getmetatable(mt)
+function LOL:isa(T)
+    if not getmetatable(self) then
+        return false
     end
-    return false
+    if getmetatable(self) == T then
+        return true
+    end
+    return getmetatable(self):isa(T)
 end
 return LOL
