@@ -1,8 +1,8 @@
 
 local LOL = require("LOL")
 
--- To create a class, sublcass the root object "LOL"
-local Animal = LOL:new()
+-- To create a class, sublcass the root object "LOL" by calling `clone()`
+local Animal = LOL:clone()
 
 -- Class member.
 Animal.FOO = 42
@@ -20,22 +20,22 @@ function Animal:speak()
 end
 
 -- Subclass Animal the same as before.
-local Dog = Animal:new()
+local Dog = Animal:clone()
 
 function Dog:init()
   return Animal.init(self, "bark!")
 end
 
-local Cat = Animal:new()
+local Cat = Animal:clone()
 
 function Cat:init()
   return Animal.init(self, "meow")
 end
 
--- Instantiating also requires a call to new, but with an added manual call to init.
-local dog = Dog:new():init()
+-- Instantiating also requires a call to clone, but with an added manual call to init.
+local dog = Dog:clone():init()
 assert(dog:speak() == "bark!")
-local cat = Cat:new():init()
+local cat = Cat:clone():init()
 assert(cat:speak() == "meow")
 
 -- `is` is a function on the root LOL object that returns true if a table is an exact instance of
@@ -59,12 +59,12 @@ assert(not cat:issub(Dog))
 assert(cat:issub(Cat))
 
 -- A bonus.
-local Lion = Cat:new()
+local Lion = Cat:clone()
 function Lion:init()
     return Animal.init(self, "ROAR!!")
 end
 
-local lion = Lion:new():init()
+local lion = Lion:clone():init()
 assert(lion:speak() == "ROAR!!")
 
 assert(not lion:is(Animal))

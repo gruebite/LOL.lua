@@ -1,6 +1,6 @@
 local LOL = {}
 LOL.__index = LOL
-function LOL:new(...)
+function LOL:clone(...)
     local T = setmetatable({}, self)
     T.__index = T
     return T
