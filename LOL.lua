@@ -5,7 +5,7 @@ function LOL:clone(...)
     T.__index = T
     return T
 end
-function LOL:init(...) end
+function LOL:init(...) return self end
 function LOL:isa(T)
     if not getmetatable(self) then
         return false
