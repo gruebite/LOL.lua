@@ -32,7 +32,7 @@ function Cat:init()
   return Animal.init(self, "meow")
 end
 
--- Instantiating also calls new, but with an added manual call to init.
+-- Instantiating also requires a call to new, but with an added manual call to init.
 local dog = Dog:new():init()
 assert(dog:speak() == "bark!")
 local cat = Cat:new():init()
@@ -43,15 +43,17 @@ assert(cat:speak() == "meow")
 assert(not dog:is(Animal))
 assert(dog:is(Dog))
 assert(not dog:is(Cat))
+
+assert(not cat:is(Animal))
+assert(not cat:is(Dog))
+assert(cat:is(Cat))
+
+-- `issub` is a function on the root LOL object that returns true if a table is a subclass of a
+-- class.
 assert(dog:issub(Animal))
 assert(dog:issub(Dog))
 assert(not dog:issub(Cat))
 
--- `issub` is a function on the root LOL object that returns true if a table is a subclass of a
--- class.
-assert(not cat:is(Animal))
-assert(not cat:is(Dog))
-assert(cat:is(Cat))
 assert(cat:issub(Animal))
 assert(not cat:issub(Dog))
 assert(cat:issub(Cat))
