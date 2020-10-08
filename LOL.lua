@@ -1,11 +1,14 @@
 local LOL = {}
 LOL.__index = LOL
-function LOL:clone(...)
+function LOL:clone()
     local T = setmetatable({}, self)
     T.__index = T
     return T
 end
 function LOL:init(...) return self end
+function LOL:new(...)
+    return setmetatable({}, self):init(...)
+end
 function LOL:isa(T)
     if not getmetatable(self) then
         return false

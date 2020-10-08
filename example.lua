@@ -19,6 +19,8 @@ function Animal:speak()
   return self.call
 end
 
+function Animal:__tostring() return "WOW" end
+
 -- Subclass Animal the same as before.
 local Dog = Animal:clone()
 
@@ -61,3 +63,5 @@ assert(lion:isa(Animal))
 assert(not lion:isa(Dog))
 assert(lion:isa(Cat))
 assert(lion:isa(Lion))
+
+print(tostring(lion))
