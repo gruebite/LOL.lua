@@ -34,9 +34,10 @@ function Cat:init()
   return Animal.init(self, "meow")
 end
 
--- Instantiating also requires a call to clone, but with an added manual call to init.
-local dog = Dog:clone():init()
+-- Instantiating can be done with new().
+local dog = Dog:new()
 assert(dog:speak() == "bark!")
+-- ...or with clone():init()
 local cat = Cat:clone():init()
 assert(cat:speak() == "meow")
 
@@ -56,7 +57,7 @@ function Lion:init()
     return Animal.init(self, "ROAR!!")
 end
 
-local lion = Lion:clone():init()
+local lion = Lion:new()
 assert(lion:speak() == "ROAR!!")
 
 assert(lion:isa(Animal))
